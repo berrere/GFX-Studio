@@ -1440,7 +1440,7 @@
 
   async function botDurumKontrol() {
     try {
-      var response = await fetch('https://corresponding-partner-programme-supervisor.trycloudflare.com/ping', { signal: AbortSignal.timeout(3000) });
+      var response = await fetch('https://exempt-bestsellers-manitoba-chart.trycloudflare.com/ping', { signal: AbortSignal.timeout(3000) });
       var data = await response.json();
       if (data.online) {
         botOnline = true;
@@ -1616,7 +1616,7 @@
     res.style.display = 'block';
     res.innerHTML = '<p style="color:var(--text-3);font-size:14px;">Sorgulanıyor...</p>';
     try {
-      var response = await fetch('https://corresponding-partner-programme-supervisor.trycloudflare.com/siparis/' + id);
+      var response = await fetch('https://exempt-bestsellers-manitoba-chart.trycloudflare.com/siparis/' + id);
       if (response.status === 404) {
         res.innerHTML = '<div style="background:var(--bg-3);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;text-align:center;"><div style="font-size:28px;margin-bottom:8px;">❌</div><div style="font-size:15px;color:var(--text-1);">Siparis bulunamadi</div><div style="font-size:13px;color:var(--text-3);margin-top:4px;">Kodu kontrol edip tekrar deneyin.</div></div>';
         return;
