@@ -838,6 +838,7 @@
   }
   .modal-btn-cancel:hover { background: var(--bg-3); }
 </style>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
@@ -1324,6 +1325,9 @@
             <label data-tr="Proje Detayları" data-en="Project Details">Proje Detayları</label>
             <textarea id="f-desc" placeholder="" data-tr-placeholder="Ne yapmamızı istediğinizi detaylıca açıklayın..." data-en-placeholder="Describe in detail what you want us to do..."></textarea>
           </div>
+          <div id="recaptcha-container" style="margin-bottom:14px;display:flex;justify-content:center;">
+            <div class="g-recaptcha" data-sitekey="6LfygpEsAAAAADbEdr0ok6w8n5G-4gVndYx3aN6s" data-theme="dark"></div>
+          </div>
           <button class="form-submit" onclick="modalGoster()" id="siparis-btn" data-tr="Sipariş Gönder →" data-en="Send Order →" disabled style="opacity:.5;cursor:not-allowed;">Sipariş Gönder →</button>
         </div>
         <div class="form-success" id="form-success">
@@ -1495,6 +1499,7 @@
 
   function modalIptal() {
     document.getElementById('dm-modal').classList.remove('open');
+    if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
     // İptal ekranı göster
     document.getElementById('form-body').style.display = 'none';
     var successEl = document.getElementById('form-success');
@@ -1510,6 +1515,7 @@
         (currentLang === 'tr' ? '← Geri Dön' : '← Go Back') +
       '</button>';
     successEl.style.display = 'block';
+    if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
   }
 
   function siparisiSifirla() {
@@ -1520,6 +1526,7 @@
     var btn = document.querySelector('.form-submit');
     btn.textContent = currentLang === 'tr' ? 'Siparis Gonder' : 'Send Order';
     btn.disabled = false;
+    if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
   }
 
   async function submitForm() {
