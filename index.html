@@ -1485,10 +1485,22 @@
   var _formVerisi = null;
 
   function modalGoster() {
+    if (!botOnline) {
+      alert(currentLang === 'tr' ? 'Servis su an kapali. Lutfen daha sonra tekrar deneyin.' : 'Service is currently offline. Please try again later.');
+      return;
+    }
     var discord = document.getElementById('f-discord').value.trim();
     var service = document.getElementById('f-service').value;
     var desc    = document.getElementById('f-desc').value.trim();
-    // Validasyon modalGoster'da yapıldı
+    if (!discord || !service || !desc) {
+      alert(currentLang === 'tr' ? 'Lutfen tum zorunlu alanlari doldurun.' : 'Please fill in all required fields.');
+      return;
+    }
+    var recaptchaRes = typeof grecaptcha !== 'undefined' ? grecaptcha.getResponse() : '';
+    if (!recaptchaRes) {
+      alert(currentLang === 'tr' ? 'Lutfen once "Ben robot degilim" kutucugunu isaretleyin!' : 'Please check the "I am not a robot" box first!');
+      return;
+    }
     document.getElementById('dm-modal').classList.add('open');
   }
 
